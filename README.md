@@ -6,6 +6,9 @@
 <hr/>
 <h3>Change_log</h3>
 
+<h5><code>[v0.3.8]</code></h5>
+<p>Login screen UI has been re-estructured.</p>
+
 <h5><code>v0.3.5</code></h5>
 <p> At this point of the app, it has already some components and screens, such as:</p>
 <ul>
