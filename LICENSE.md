@@ -1,2 +1,2 @@
 
-Copyright (C) 2019 Meynor R Lucas
+Copyright (C) 2019 Meynor R Lucas – Andler Develops
