@@ -1,4 +1,4 @@
-rootProject.name = 'baseFeaturesNSyntax'
+rootProject.name = 'Awesome Places'
 
 include ':app'
 

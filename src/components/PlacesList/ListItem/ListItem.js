@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Platform } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet, Platform } from 'react-native';
+
+import MainText from '../../UI/MainText/MainText';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -11,11 +13,11 @@ const listItem = props => (
           style={styles.placeImg}
           resizeMode="cover"
           source={props.placeImg} />
-        <Text style={{
+        <MainText style={{
           paddingHorizontal: 8
         }}>
           {props.placeName}
-        </Text>
+        </MainText>
         <View style={{position: 'absolute', right: 24}}>
           <Icon name={icon} size={32} color="#4caf50" />
         </View>

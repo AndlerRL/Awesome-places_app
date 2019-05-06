@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image, TextInput, Text, Button, StyleSheet, Platform } from 'react-native';
-import cableBird from '../../assets/images/bird-on-cables.jpg'
+import { View, ImageBackground, Button, StyleSheet, Platform } from 'react-native';
 
+import cableBird from '../../assets/images/bird-on-cables.jpg'
+import Input from '../../components/UI/Input/Input';
+import TextHeader from '../../components/UI/HeaderText/HeaderText';
+import Btn from '../../components/UI/Btn/Btn';
 import startMainTabs from '../MainTabs/startMainTabs';
 
 class AuthScreen extends Component {
@@ -11,69 +14,59 @@ class AuthScreen extends Component {
   
   render () {
     return (
-      <View style={styles.container}>
-        <Image
-            resizeMode="cover"
-            source={cableBird}
-            style={styles.background} />
-        <View style={styles.authContainer}>
-          <Text style={styles.title}>Welcome to Awesome Places!</Text>
-          <TextInput placeholder="username" />
-          <TextInput placeholder="password" />
-          <Button title="Login" onPress={this.loginHandler} />
+      <ImageBackground
+          resizeMode="cover"
+          source={cableBird}
+          style={ss.background}>
+        <View style={ss.container}>
+            <View style={ss.authContainer}>
+              <TextHeader style={{position: 'absolute', top: 16}}>Welcome to Awesome Places !</TextHeader>
+              <Btn
+                color="#e8eaf6"
+                borderColor="#3949ab"
+                onPress={this.loginHandler}>
+                Switch to Sign Up
+              </Btn>
+              <View style={ss.inputContainer}>
+                <Input placeholder="E-mail address" />
+                <Input placeholder="Password" />
+                <Input placeholder="Confirm Password" />
+              </View>
+              <Btn
+                color="#e8eaf6"
+                borderColor="#3949ab"
+                onPress={this.loginHandler}>
+                Sign In
+              </Btn>
+            </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
 
-const title = Platform.select({
-  ios: {
-    fontSize: 42,
-    padding: 16,
-    textAlign: 'center',
-    fontFamily: 'Cookie-Regular',
-    fontWeight: '400',
-    fontStyle: 'italic'
-  },
-  android: {
-    fontSize: 20,
-    padding: 8,
-    textAlign: 'center',
-    fontFamily: 'Cookie-Regular',
-    fontWeight: '400',
-    fontStyle: 'italic'
-  }
-})
-
-const styles = StyleSheet.create({
+const ss = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#f5f5f53a'
   },
   authContainer: {
-    padding: 4,
-    position: 'absolute',
+    paddingHorizontal: 16,
+    paddingBottom: '16.666%',
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: 300,
-    height: 200,
-    backgroundColor: '#f5f5f5',
-    marginVertical: 50,
-    borderTopLeftRadius: 2,
-    borderTopRightRadius: 2,
-    borderBottomLeftRadius: 2,
-    borderBottomRightRadius: 2,
+    width: "91.666%",
+    backgroundColor: 'transparent'
   },
   background: {
-    alignContent: 'center',
-    height: '100%',
     width: '100%',
-    opacity: 0.7,
-    backgroundColor: '#03a9f49a',
+    flex: 1,
     zIndex: 0
   },
-  title: {
-    ...title
+  inputContainer: {
+    width: '83.333%'
   }
 })
 
