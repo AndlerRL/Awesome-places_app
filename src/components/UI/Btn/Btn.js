@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, TouchableNativeFeedback, Text, View, StyleSheet, Platform } from 'react-native';
 
-const btnWBck = props => (
-  <TouchableOpacity onPress={props.onPress}>
+const btnWBck = props => {
+  const content = (
     <View style={[ss.btn, {
       backgroundColor: props.backgroundColor,
       borderColor: props.borderColor  
@@ -13,15 +13,29 @@ const btnWBck = props => (
         {props.children}
       </Text>
     </View>
-  </TouchableOpacity>
-);
+  );
+
+  if (Platform.OS === 'android') {
+    return (
+      <TouchableNativeFeedback onPress={props.onPress}>
+        { content }
+      </TouchableNativeFeedback>
+    )
+  }
+
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      { content }
+    </TouchableOpacity>
+  )
+};
 
 const ss = StyleSheet.create({
   btn: {
     padding: 16,
     margin: 8,
-    borderRadius: 10,
-    borderWidth: 3,
+    borderRadius: 4,
+    borderWidth: 2,
   },
   btnText: {
     fontWeight: '600',

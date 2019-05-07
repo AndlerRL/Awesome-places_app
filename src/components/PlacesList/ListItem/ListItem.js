@@ -14,12 +14,14 @@ const listItem = props => (
           resizeMode="cover"
           source={props.placeImg} />
         <MainText style={{
-          paddingHorizontal: 8
+          paddingHorizontal: 8,
+          color: '#f5f5f5',
+          fontSize: 16
         }}>
           {props.placeName}
         </MainText>
         <View style={{position: 'absolute', right: 24}}>
-          <Icon name={icon} size={32} color="#4caf50" />
+          <Icon name={icon} size={32} color="#004d40" />
         </View>
       </View>
     </View>
@@ -36,16 +38,16 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     flexDirection: 'row',
-    marginVertical: 2,
+    marginVertical: 4,
     paddingVertical: 6
   },
   listItem: {
     width: '83.333%',
     paddingVertical: 8,
     paddingHorizontal: 4,
-    backgroundColor: '#c8e6c9',
+    backgroundColor: '#00796b',
     flexDirection: 'row',
-    color: '#212121',
+    color: '#f5f5f5',
     alignItems: 'center',
     borderBottomRightRadius: 50,
     borderTopRightRadius: 50,
@@ -53,13 +55,20 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 2,
     borderEndWidth: 3,
     borderStartWidth: 3,
-    borderStartColor: '#a5d6a7',
-    borderEndColor: '#a5d6a7'
+    borderStartColor: '#00695c',
+    borderEndColor: '#00695c',
+    shadowColor: '#222',
+    shadowOffset: {
+      width: -3,
+      height: 2
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 6
   },
   placeImg: {
     marginRight: 8,
-    height: 55,
-    width: 55
+    height: 64,
+    width: 64
   }
 });
 

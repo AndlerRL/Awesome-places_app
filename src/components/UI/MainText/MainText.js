@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 const mainText = props => (
   <Text
     {...props}
-    style={ss.mainText}>
+    style={[ss.mainText, props.style]}>
     {props.children}
   </Text>
 );

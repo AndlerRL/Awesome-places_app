@@ -6,6 +6,9 @@
 <hr/>
 <h3>Change_log</h3>
 
+<h5><code>[v0.4.7]</code></h5>
+<p>Share Places Screen has a new UI/UX look and ready to add more functionallity. Also Login has some UI fixes.</p>
+
 <h5><code>[v0.3.8]</code></h5>
 <p>Login screen UI has been re-estructured.</p>
 

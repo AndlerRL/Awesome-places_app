@@ -47,7 +47,7 @@ class FindPlaceScreen extends Component {
 
 const styles = StyleSheet.create({
   findContainer: {
-    backgroundColor: '#e1f5fe',
+    backgroundColor: '#64ffda',
     height: '100%',
     width: '100%'
   }

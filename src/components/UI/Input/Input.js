@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, Platform } from 'react-native';
 
 const input = props => (
   <TextInput
@@ -8,17 +8,23 @@ const input = props => (
     style={[ss.input, props.style]} />
 );
 
+const inputs = Platform.select({
+  ios: {
+    paddingBottom: 8
+  },
+  android: {
+    paddingBottom: 4
+  }
+});
+
 const ss = StyleSheet.create({
   input: {
-    height: 48,
-    width: '100%',
-    textAlign: 'center',
-    marginVertical: 8,
-    borderWidth: 1,
-    borderColor: '#f5f5f5',
-    backgroundColor: '#f5f5f5',
-    borderRadius: 2,
-    padding: 6
+    width: '83.333%',
+    borderBottomColor: '#222',
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    ...inputs
   }
 })
 
