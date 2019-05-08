@@ -15,6 +15,10 @@ const btnIcon = props => {
           margin: props.margin
         },
         props.style ]}>
+        <Icon 
+          size={props.size}
+          name={props.name}
+          color={props.color} />
         <Text style={[
           ss.btnText, {
             color: props.textColor,
@@ -23,10 +27,6 @@ const btnIcon = props => {
           }]}>
           {props.children}  
         </Text>
-        <Icon 
-          size={props.size}
-          name={props.name}
-          color={props.color} />
     </View>
   );
 
@@ -57,7 +57,7 @@ const ss = StyleSheet.create({
   btnText: {
     fontWeight: '600',
     fontSize: 16,
-    marginRight: 16
+    marginLeft: 16
   }
 })
 

@@ -24,6 +24,7 @@ const ss = StyleSheet.create({
     borderBottomWidth: 1,
     alignItems: 'center',
     paddingHorizontal: 8,
+    marginVertical: 8,
     ...inputs
   }
 })

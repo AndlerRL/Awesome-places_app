@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, TextInput, Button, StyleSheet, Platform, Text, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
@@ -17,7 +17,6 @@ class SharePlaceScreen extends Component {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onOnNavigatorEvent);
   }
-
   
   onOnNavigatorEvent = e => {
     if (e.type === "NavBarButtonPress") {

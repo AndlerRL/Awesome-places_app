@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Button, StyleSheet, Platform } from 'react-native';
+import { View, ImageBackground, StyleSheet, Platform, Dimensions } from 'react-native';
 
 import cableBird from '../../assets/images/bird-on-cables.jpg'
 import Input from '../../components/UI/Input/Input';
@@ -14,11 +14,51 @@ const logIn = Platform.select({
 })
 
 class AuthScreen extends Component {
+  state = {
+    viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape'
+  }
+
+  constructor(props) {
+    super(props);
+    Dimensions.addEventListener('change', this.updateStyles);
+  }
+
+  componentWillUnmount () {
+    Dimensions.removeEventListener('change', this.updateStyles);
+  }
+
+  updateStyles = dims => {
+    //console.log(dims)
+    this.setState({
+      viewMode: dims.window.height < 500 ? 'portrait' : 'landscape'
+    });
+  };
+
+
   loginHandler = () => {
     startMainTabs();
   }
   
   render () {
+    let viewMode = {
+      pwContainer: null,
+      pwWrapper: null
+    };
+
+    if (this.state.viewMode === 'portrait') {
+      viewMode = {
+        pwContainer: { ...ss.portraitPasswordContainer },
+        pwWrapper: { ...ss.portraitPasswordWrapper }
+      }
+    }
+
+    if (this.state.viewMode === 'landscape') {
+      viewMode = {
+        pwContainer: { ...ss.landscapePasswordContainer },
+        pwWrapper: { ...ss.landscapePasswordWrapper }
+      }
+    }
+
     return (
       <ImageBackground
           resizeMode="cover"
@@ -26,7 +66,12 @@ class AuthScreen extends Component {
           style={ss.background}>
         <View style={ss.container}>
             <View style={ss.authContainer}>
-              <TextHeader style={{position: 'absolute', top: 16}}>Welcome to Awesome Places !</TextHeader>
+              { this.state.viewMode === 'portrait' ? 
+                <TextHeader 
+                  style={{position: 'absolute', top: 16}}>
+                  Welcome to Awesome Places !
+                </TextHeader> :
+                null }
               <Btn
                 color="#e8eaf6"
                 borderColor="#9fa8da"
@@ -38,14 +83,20 @@ class AuthScreen extends Component {
                   placeholderTextColor="#fff"
                   placeholder="E-mail address"
                   style={ss.inputAuth} />
-                <Input
-                  placeholderTextColor="#fff"
-                  placeholder="Password" 
-                  style={ss.inputAuth} />
-                <Input 
-                  placeholderTextColor="#fff"
-                  placeholder="Confirm Password"
-                  style={ss.inputAuth} />
+                <View style={viewMode.pwContainer}>
+                  <View style={viewMode.pwWrapper}>
+                    <Input
+                      placeholderTextColor="#fff"
+                      placeholder="Password" 
+                      style={ss.inputAuth} />
+                  </View>
+                  <View style={viewMode.pwWrapper}>
+                    <Input 
+                      placeholderTextColor="#fff"
+                      placeholder="Confirm Password"
+                      style={ss.inputAuth} />
+                  </View>
+                </View>
               </View>
               <BtnIcon
                 color="#e8eaf6"
@@ -56,7 +107,8 @@ class AuthScreen extends Component {
                 margin={8}
                 name={logIn}
                 size={32}
-                style={ss.btnAuth}
+                fontWeight="600"
+                fontSize={16}
                 onPress={this.loginHandler}>
                 Sign In
               </BtnIcon>
@@ -90,6 +142,20 @@ const ss = StyleSheet.create({
   inputContainer: {
     width: '83.333%',
   },
+  landscapePasswordContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  landscapePasswordWrapper: {
+    width: '45%'
+  }, 
+  portraitPasswordContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  portraitPasswordWrapper: {
+    width: '100%'
+  }, 
   inputAuth: {
     fontWeight: '500',
     borderBottomWidth: 2,
@@ -97,10 +163,6 @@ const ss = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     marginVertical: 8,
-  },
-  btnAuth: {
-    paddingHorizontal: 16,
-    flexDirection: 'row'
   }
 })
 
