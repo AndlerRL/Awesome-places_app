@@ -14,8 +14,37 @@ const logIn = Platform.select({
 })
 
 class AuthScreen extends Component {
+  static navigatorStyle = {
+    navBarButtonColor: '#00e5ff',
+    navBarBackgroundColor: '#006064',
+    navBarTextColor: '#f5f5f5'
+  }
+
   state = {
-    viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape'
+    viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape',
+    controls: {
+      email: {
+        value: '',
+        validationRules: {
+          isEmail: true,
+          valid: false,
+        }
+      },
+      password: {
+        value: '',
+        validationRules: {
+          valid: false,
+          minLength: 6
+        }
+      },
+      confirmPassword: {
+        value: '',
+        validationRules: {
+          valid: false,
+          equalTo: 'password'
+        }
+      }
+    }
   }
 
   constructor(props) {
@@ -30,7 +59,7 @@ class AuthScreen extends Component {
   updateStyles = dims => {
     //console.log(dims)
     this.setState({
-      viewMode: dims.window.height < 500 ? 'portrait' : 'landscape'
+      viewMode: dims.window.height > 500 ? 'portrait' : 'landscape'
     });
   };
 
@@ -38,6 +67,20 @@ class AuthScreen extends Component {
   loginHandler = () => {
     startMainTabs();
   }
+
+  updateInputState = (key, val) => {
+    this.setState(prevState => {
+      return {
+        controls: {
+          ...prevState.controls,
+          [key]: {
+            ...prevState.controls[key],
+            value: val
+          }
+        }
+      }
+    })
+  } 
   
   render () {
     let viewMode = {
@@ -73,8 +116,8 @@ class AuthScreen extends Component {
                 </TextHeader> :
                 null }
               <Btn
-                color="#e8eaf6"
-                borderColor="#9fa8da"
+                color="#f5f5f5"
+                borderColor="#ffff00"
                 onPress={this.loginHandler}>
                 Switch to Sign Up
               </Btn>
@@ -82,27 +125,36 @@ class AuthScreen extends Component {
                 <Input
                   placeholderTextColor="#fff"
                   placeholder="E-mail address"
+                  keyboardType="email-address"
+                  value={this.state.controls.email.value}
+                  onChangeText={val => this.updateInputState('email', val)}
                   style={ss.inputAuth} />
                 <View style={viewMode.pwContainer}>
                   <View style={viewMode.pwWrapper}>
                     <Input
                       placeholderTextColor="#fff"
-                      placeholder="Password" 
+                      placeholder="Password"
+                      secureTextEntry={true}
+                      value={this.state.controls.password.value}
+                      onChangeText={val => this.updateInputState('password', val)}
                       style={ss.inputAuth} />
                   </View>
                   <View style={viewMode.pwWrapper}>
                     <Input 
                       placeholderTextColor="#fff"
                       placeholder="Confirm Password"
+                      secureTextEntry={true}
+                      value={this.state.controls.confirmPassword.value}
+                      onChangeText={val => this.updateInputState('confirmPassword', val)}
                       style={ss.inputAuth} />
                   </View>
                 </View>
               </View>
               <BtnIcon
-                color="#e8eaf6"
-                textColor="#e8eaf6"
-                borderColor="#9fa8da"
-                borderWidth={2}
+                color="#f5f5f5"
+                textColor="#f5f5f5"
+                borderColor="#ffff00"
+                borderWidth={4}
                 padding={16}
                 margin={8}
                 name={logIn}

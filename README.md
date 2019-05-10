@@ -6,6 +6,9 @@
 <hr/>
 <h3>Change_log</h3>
 
+<h5><code>[v0.5.3]</code></h5>
+<p>Added animation into the Find Places screen. Also made some adaptive and design corrections.</p>
+
 <h5><code>[v0.4.8]</code></h5>
 <p>Auth Screen has responsive design according dimensions</p>
 

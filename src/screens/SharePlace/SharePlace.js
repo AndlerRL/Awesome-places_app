@@ -9,6 +9,14 @@ import ImgUpload from '../../components/ImageUpload/ImageUpload';
 import Map from '../../components/Map/Map';
 
 class SharePlaceScreen extends Component {
+  static navigatorStyle = {
+    navBarButtonColor: '#00e5ff',
+    navBarBackgroundColor: '#006064',
+    navBarTextColor: '#f5f5f5',
+    screenBackgroundColor: '#e0f2f1',
+    navBarHideOnScroll: true
+  }
+
   state = {
     placeName: ''
   }
@@ -81,7 +89,6 @@ const inputs = Platform.select({
 
 const ss = StyleSheet.create({
   shareContainer: {
-    backgroundColor: '#64ffda',
     flex: 1,
     alignItems: 'center',
     width: '100%'

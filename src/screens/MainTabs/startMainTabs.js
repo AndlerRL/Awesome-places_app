@@ -55,6 +55,19 @@ const startTabs = () => {
           }
         }
       ],
+      tabsStyle: {
+        // initialTabIndex: 1 (0 default android)
+        tabBarButtonColor: '#18ffff',
+        tabBarSelectedButtonColor: '#00e5ff',
+        tabBarBackgroundColor: '#006064'
+      },
+      appStyle: {
+        // backButtonImage: any image or maybe icon
+        // hideBackButtontitle: true/false
+        // bottomTabBadgeTextColor: any color
+        tabBarSelectedButtonColor: '#00e5ff',
+        bottomTabBadgeBackgroundColor: '#006064'
+      },
       drawer: {
         left: {
           screen: "awesome-places.SideDrawerScreen",

@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     borderBottomLeftRadius: 2,
     borderTopLeftRadius: 2,
-    borderEndWidth: 3,
-    borderStartWidth: 3,
-    borderStartColor: '#00695c',
+    borderEndWidth: 4,
+    borderStartWidth: 5,
+    borderStartColor: '#ffff00',
     borderEndColor: '#00695c',
     shadowColor: '#222',
     shadowOffset: {

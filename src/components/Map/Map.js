@@ -32,7 +32,8 @@ class Map extends Component {
           size={32}
           padding={16}
           margin={8}
-          textColor='#f5f5f5'
+          textColor='#212121'
+          fontWeight="600"
           onPress={() => alert('Locate Yourself!')}>
           Locate Me!
         </BtnIcon>
@@ -48,7 +49,7 @@ const ss = StyleSheet.create({
     marginVertical: 32,
     paddingTop: 16,
     borderRadius: 8,
-    backgroundColor: '#00796b',
+    backgroundColor: '#ffd600',
     shadowColor: '#222',
     shadowOffset: {
       width: -3,

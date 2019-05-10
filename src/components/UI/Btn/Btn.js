@@ -9,7 +9,7 @@ const btnWBck = props => {
     }]}>
       <Text style={[ss.btnText, {
         color: props.color
-      }]}>
+      }, props.ss]}>
         {props.children}
       </Text>
     </View>
@@ -32,10 +32,10 @@ const btnWBck = props => {
 
 const ss = StyleSheet.create({
   btn: {
-    padding: 16,
+    padding: 20,
     margin: 8,
-    borderRadius: 4,
-    borderWidth: 2,
+    borderRadius: 50,
+    borderWidth: 4,
   },
   btnText: {
     fontWeight: '600',
