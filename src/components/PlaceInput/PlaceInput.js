@@ -13,17 +13,21 @@ const controls = props => (
   <View style={ss.container}>
     <Input
       onChangeText={props.onChangeText}
-      value={props.placeName}
+      value={props.placeData.value}
+      valid={props.placeData.validationRules.valid}
+      touched={props.placeData.touched}
       placeholder="Place Name"
       placeholderTextColor="#2229"
-      style={ss.input} />
+      style={ss.input}
+      autoCapitalize={false} />
     <BtnIcon
       name={pin}
       color='#82b1ff'
       size={32}
       padding={16}
       margin={8}
-      onPress={props.onPress}>
+      onPress={props.onPress}
+      disabled={props.disabled}>
       Share a Place!
     </BtnIcon>
   </View>

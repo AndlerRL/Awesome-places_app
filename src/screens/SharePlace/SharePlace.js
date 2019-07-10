@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, Platform } from 'react-native';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Platform,
+  KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
@@ -7,6 +12,7 @@ import PlaceInput from '../../components/PlaceInput/PlaceInput';
 import HeaderText from '../../components/UI/HeaderText/HeaderText';
 import ImgUpload from '../../components/ImageUpload/ImageUpload';
 import Map from '../../components/Map/Map';
+import validate from '../../utility/validation';
 
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
@@ -18,7 +24,16 @@ class SharePlaceScreen extends Component {
   }
 
   state = {
-    placeName: ''
+    controls: {
+      placeName: {
+        value: "",
+        touched: false,
+        validationRules: {
+          valid: false,
+          notEmpty: true,
+        }
+      }
+    }
   }
 
   constructor(props) {
@@ -37,16 +52,33 @@ class SharePlaceScreen extends Component {
   }
   
   placeNameChangedHandler = val => {
-    this.setState({
-      placeName: val
+    this.setState(prevState => {
+      return {
+        controls: {
+          ...prevState.controls,
+          placeName: {
+            ...prevState.controls.placeName,
+            value: val,
+            validationRules: {
+              ...prevState.controls.placeName.validationRules,
+              valid: validate(val, prevState.controls.placeName.validationRules),
+            },
+            touched: true
+          }
+        }
+      }
     });
   };
   
   placeAddedHandler = () => {
-    if (this.state.placeName.trim() !== "") {
+    if (this.state.controls.placeName.value.trim() !== "") {
       this.props.onPlaceAdded(this.state.placeName);
       this.setState({
-        placeName: ""
+        controls: {
+          placeName: {
+            value: ""
+          }
+        }
       })
     }
   }
@@ -54,7 +86,7 @@ class SharePlaceScreen extends Component {
   render () {
     return (
       <ScrollView>
-        <View style={ss.shareContainer}>
+        <KeyboardAvoidingView behavior="padding" style={ss.shareContainer}>
           <HeaderText style={header}>
             Share a Place with us!
           </HeaderText>
@@ -63,8 +95,9 @@ class SharePlaceScreen extends Component {
           <PlaceInput
             onChangeText={this.placeNameChangedHandler}
             onPress={this.placeAddedHandler}
-            placeName={this.state.placeName} />
-        </View>
+            placeData={this.state.controls.placeName}
+            disabled={this.state.controls.placeName.validationRules.valid} />
+        </KeyboardAvoidingView>
       </ScrollView>
     );
   }

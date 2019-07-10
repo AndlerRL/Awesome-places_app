@@ -5,7 +5,7 @@ const input = props => (
   <TextInput
     underlineColorAndroid="transparent"
     {...props}
-    style={[ss.input, props.style]} />
+    style={[ss.input, props.style, !props.valid && props.touched ? ss.invalid : null]} />
 );
 
 const inputs = Platform.select({
@@ -26,6 +26,9 @@ const ss = StyleSheet.create({
     paddingHorizontal: 8,
     marginVertical: 8,
     ...inputs
+  },
+  invalid: {
+    borderBottomColor: '#f41',
   }
 })
 

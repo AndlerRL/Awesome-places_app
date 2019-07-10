@@ -14,7 +14,8 @@ const btnIcon = props => {
           padding: props.padding,
           margin: props.margin
         },
-        props.style ]}>
+        props.style,
+        props.disabled ? ss.disabled : null ]}>
         <Icon 
           size={props.size}
           name={props.name}
@@ -24,11 +25,16 @@ const btnIcon = props => {
             color: props.textColor,
             fontWeight: props.fontWeight,
             fontSize: props.fontSize
-          }]}>
+          },
+          props.disabled ? ss.disabledText : null]}>
           {props.children}  
         </Text>
     </View>
   );
+
+  if (props.disabled) {
+    return content
+  }
 
   if (Platform.OS === 'android') {
     return (
@@ -58,6 +64,12 @@ const ss = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
     marginLeft: 16
+  },
+  disabled: {
+    borderColor: '#eee',
+  },
+  disabledText: {
+    color: '#e0e0e0'
   }
 })
 
